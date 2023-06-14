@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
 
 import time
+import datetime
 import asyncio
 from prologix_gpib_async import AsyncPrologixGpibEthernetController
 
 IPaddr = '192.168.11.13'
 GPIBaddr = 12
-
-from datetime import datetime
 
 async def init():
     try: 
@@ -57,10 +56,6 @@ async def main():
     T_A = 0.
     T_B = 0.
 
-    now = datetime.now()
-
-    current_time = now.strftime("%y-%m-%d %H:%M:%S")
-
     for i in range(avg_n):
         T_A += float(await read_temp('A'))
         T_B += float(await read_temp('B'))
@@ -69,7 +64,12 @@ async def main():
     T_A /= avg_n
     T_B /= avg_n
 
+    n = datetime.datetime.now(datetime.timezone.utc)
+
+    current_time = n.isoformat()
+
     print(current_time + "\t{:.2f}\t{:.2f}".format(T_A, T_B))
+
 
 if __name__ == "__main__":
     asyncio.run(main())
