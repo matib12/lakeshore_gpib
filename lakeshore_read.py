@@ -12,7 +12,7 @@ GPIBaddr = 12
 import configparser
 
 config = configparser.ConfigParser()
-config.read('influxdb.ini')
+config.read('/home/mat/ICRR/lakeshore_gpib/influxdb.ini')
 
 token = config['ICRR']['Token']
 org = config['ICRR']['Org']
