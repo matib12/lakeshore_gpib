@@ -12,7 +12,7 @@ A configuration file is necessary to connect to the InfluxDB database.
     Token = YOUR_ACCESS_TOKEN  
     Org = YOUR_ORGANIZATION  
     Bucket = YOUR_BUCKET
-  
+      
     [Prologix]  
     IP = PROLOGIX_IP  
     Addr = PROLOGIX_GPIB_ADDR
