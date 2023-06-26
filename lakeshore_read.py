@@ -5,9 +5,6 @@ import datetime
 import asyncio
 from prologix_gpib_async import AsyncPrologixGpibEthernetController
 
-prologixIPaddr = '192.168.11.13'
-GPIBaddr = 12
-
 # InfluxDB server
 import configparser
 import os
@@ -17,12 +14,14 @@ dir_path = os.path.dirname(os.path.abspath(__file__))
 config = configparser.ConfigParser()
 config.read(os.path.join(dir_path, 'influxdb.ini'))
 
-token = config['ICRR']['Token']
-org = config['ICRR']['Org']
-#url = "http://172.16.35.113:8086"
-url = config['ICRR']['URL']
+token = config['Influx']['Token']
+org = config['Influx']['Org']
+url = config['Influx']['URL']
 
-import influxdb_client, os, time
+prologixIPaddr = config['Prologix']['IP']
+GPIBaddr = int(config['Prologix']['Addr'])
+
+import influxdb_client, time
 from influxdb_client import InfluxDBClient, Point, WritePrecision
 from influxdb_client.client.write_api import SYNCHRONOUS
 
