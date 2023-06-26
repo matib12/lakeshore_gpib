@@ -9,10 +9,15 @@ prologixIPaddr = '192.168.11.13'
 GPIBaddr = 12
 
 # InfluxDB server
-token = "dqaJw6NXj1otMUE8MctTqQhf7cn8kZue46CG04nKTS9NW-Fw9T9qpsZmAOg3N-EmIx17YRWBcLfNLFBmlT24vg=="
-org = "Unipg"
+import configparser
+
+config = configparser.ConfigParser()
+config.read('influxdb.ini')
+
+token = config['ICRR']['Token']
+org = config['ICRR']['Org']
 #url = "http://172.16.35.113:8086"
-url = "http://192.168.11.21:8086"
+url = config['ICRR']['URL']
 
 import influxdb_client, os, time
 from influxdb_client import InfluxDBClient, Point, WritePrecision
